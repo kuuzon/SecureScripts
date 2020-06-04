@@ -26,11 +26,11 @@ app.use(express.json());
 
 //[A] Route
 app.use('/api/medscripts', medScripts);
-app.use('/api/patients', patients);
-app.use('/api/doctors', doctors);
-app.use('/api/pharms', pharms);
-app.use('/api/users', users);
-app.use('/api/auth', auth);
+// app.use('/api/patients', patients);
+// app.use('/api/doctors', doctors);
+// app.use('/api/pharms', pharms);
+// app.use('/api/users', users);
+// app.use('/api/auth', auth);
 
 //[B] Error Route
 
