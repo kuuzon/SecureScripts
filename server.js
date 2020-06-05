@@ -1,5 +1,5 @@
 //Import packages
-// const Joi = require('@hapi/joi');
+const Joi = require('@hapi/joi');
 // const config = require('config');
 // const mongoose = require('mongoose');
 
@@ -24,7 +24,12 @@ const auth = require('./routes/auth');
 //Init express application
 app.use(express.json());
 
-//[A] Route
+//[A] Home Route [READ]
+app.get('/', (req, res) => {
+    res.send('WELCOME TO SECURE SCRIPTS');
+});
+
+//[B] Imported Routes
 app.use('/api/medscripts', medScripts);
 // app.use('/api/patients', patients);
 // app.use('/api/doctors', doctors);
@@ -39,3 +44,10 @@ app.use('/api/medscripts', medScripts);
 //Server PORT
 const port = process.env.PORT || 5000
 app.listen(5000, ()=> console.log(`Listening on port ${port}`));
+
+
+//To do list:
+//[1] Set up initial medScripts routes - need a read, need a create, need a edit and need a delete route
+//[2] Set up mongoDB dynamic DB entries
+//[3] Set up model for the medScripts routes
+//[4] Set up the auth module to incorporate into medScripts
