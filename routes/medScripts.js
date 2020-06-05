@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 //[2] CREATE (post) Route
 router.post('/', (req, res) => {
-    //Validation function called
+    //Validation function
     const {error} = validateMedScript(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -50,15 +50,63 @@ router.post('/', (req, res) => {
     };
     //Data pushed to end of database array
     medScripts.push(medScript);
-    //Response sent to user
+    //Response sent to the client
     res.send(`The script, ${medScript.name}, has been successfully recorded in the SecureScripts database.`)
 });
 
-//[3] UPDATE (put) Route
+//[3] READ (get) Route for Specific ID
+router.get('/:id', (req, res) => {
+    //Find the Id & related data
+    let medScript = medScripts.find(m => m.id === parseInt(req.params.id));
+    if(!medScript) {
+        res.status(404).send('The script ID does not exist.')
+    } else {
+        res.send(medScript)
+    };
+});
 
+//[4] UPDATE (put) Route for Specific ID
+router.put('/:id', (req, res) => {
+    //Validation function
+    const {error} = validateMedScript(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+    
+    //Find the Id & load in related data
+    let medScript = medScripts.find(m => m.id === parseInt(req.params.id));
+    if(!medScript) {
+        res.status(404).send('The script ID does not exist.')
+    } else {
+        //Update the data
+        medScript.name = req.body.name;
+        medScript.quantity = req.body.quantity;
+        medScript.repeats = req.body.repeats;
+        medScript.expired = req.body.expired;
+
+        //Response back to the client
+        res.send(`The script has been successfully updated as follows: 
+            Name: ${medScript.name}, 
+            Quantity: ${medScript.quantity},
+            Repeats: ${medScript.repeats}, 
+            Expired: ${medScript.expired},`
+        )
+    }
+});
 
 //[4] DELETE (delete) Route
-
+router.delete('/:id', (req, res) => {
+    //Find the Id & load in related data
+    let medScript = medScripts.find(m => m.id === parseInt(req.params.id));
+    if(!medScript) {
+        res.status(404).send('The script ID does not exist.')
+    } else {
+        //Get the index of the course 
+        const index = medScripts.indexOf(medScript);
+        //Delete the Script from Array
+        medScripts.splice(index, 1);
+        //Response back to client with deleted Script
+        res.send(`The script (ID: ${medScript.id}) which prescribed the medication, ${medScript.name}, has been deleted from the SecureScripts database.`)
+    }
+});
 
 //Validation Schema
 function validateMedScript(medScript){
