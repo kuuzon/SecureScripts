@@ -35,8 +35,8 @@ app.get('/', (req, res) => {
 //[B] Imported Routes
 app.use('/api/medscripts', medScripts);
 app.use('/api/patients', patients);
-// app.use('/api/doctors', doctors);
-// app.use('/api/pharms', pharms);
+app.use('/api/doctors', doctors);
+app.use('/api/pharms', pharms);
 // app.use('/api/users', users);
 // app.use('/api/auth', auth);
 
