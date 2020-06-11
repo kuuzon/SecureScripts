@@ -49,7 +49,7 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[1] Replicate medScript model + route to (a) doctors, (b) patients & (c) pharms
+//[1] Replicate medScript model + route to (a) doctors, (b) patients [DONE] & (c) pharms
 //[2] Implement hybrid schema database between medScripts, doctors, patients & pharms 
 //[3] Write user model & routes including auth.js route
 //[4] Complete remainder route for error page

@@ -9,7 +9,7 @@ const router = express.Router();
 //[1] READ (get) Route
 router.get('/', async (req, res) => {
     const patients = await Patient.find().sort('name');
-    console.log(Date.now());
+    // console.log(Date.now());
     res.send(patients);
 });
 
