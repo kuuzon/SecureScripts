@@ -1,7 +1,7 @@
 //Import packages
 const Joi = require('@hapi/joi');
+const mongoose = require('mongoose');
 // const config = require('config');
-// const mongoose = require('mongoose');
 
 //Express Package
 const express = require('express');
@@ -15,11 +15,13 @@ const pharms = require('./routes/pharms');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 
-//Connetion to MongoDB
-
+//Connetion to mongoose
+mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: true })
+    .then( () => { console.log('connected...'); } )
+    .catch( err => console.error('connection failed', err) );
 
 //Middleware
-//REMINDER: C.R.U.D. -- Create (POST), Read (GET), Update (PUT), Delete (DELETE)
+//REMINDER: C.R.U.D. operations -- Create (POST), Read (GET), Update (PUT), Delete (DELETE)
 
 //Init express application
 app.use(express.json());
@@ -47,7 +49,12 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[1] Set up initial medScripts routes - need a read, need a create, need a edit and need a delete route
-//[2] Set up mongoDB dynamic DB entries
-//[3] Set up model for the medScripts routes
-//[4] Set up the auth module to incorporate into medScripts
+//[1] Replicate medScript model + route to (a) doctors, (b) patients & (c) pharms
+//[2] Implement hybrid schema database between medScripts, doctors, patients & pharms
+//[3] Write user model & routes including auth.js route
+//[4] Complete remainder route for error page
+//[5] Add debugging processes & envs to project
+//[6] Design basic React frontend to house base GET route
+
+//Addtional:
+//[1] Update medScript model: combine "date" and "expired" to a date validation schema (see medScript.js note)
