@@ -14,6 +14,7 @@ const doctors = require('./routes/doctors');
 const pharms = require('./routes/pharms');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+// const developers = require('./routes/developers');
 
 //Connetion to mongoose
 mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: true })
@@ -39,9 +40,11 @@ app.use('/api/patients', patients);
 // app.use('/api/users', users);
 // app.use('/api/auth', auth);
 
+//Additional Route [Documentation LIVE on site]
+// app.use('/api/developers', developers);
+
 //[B] Error Route
-
-
+// app.use(error);
 
 //Server PORT
 const port = process.env.PORT || 5000
