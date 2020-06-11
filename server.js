@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 //[B] Imported Routes
 app.use('/api/medscripts', medScripts);
-// app.use('/api/patients', patients);
+app.use('/api/patients', patients);
 // app.use('/api/doctors', doctors);
 // app.use('/api/pharms', pharms);
 // app.use('/api/users', users);
@@ -50,7 +50,7 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 //To do list:
 //[1] Replicate medScript model + route to (a) doctors, (b) patients & (c) pharms
-//[2] Implement hybrid schema database between medScripts, doctors, patients & pharms
+//[2] Implement hybrid schema database between medScripts, doctors, patients & pharms 
 //[3] Write user model & routes including auth.js route
 //[4] Complete remainder route for error page
 //[5] Add debugging processes & envs to project
@@ -58,3 +58,4 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 //Addtional:
 //[1] Update medScript model: combine "date" and "expired" to a date validation schema (see medScript.js note)
+//[2] Add a "in stock function" - to pharm (See rental in example assignment)

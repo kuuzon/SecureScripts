@@ -22,7 +22,7 @@ const MedScript = mongoose.model('MedScript', new mongoose.Schema({
 //Validation Schema: MedScript
 function validateMedScript(medScript){
     const schema = Joi.object({
-        name: Joi.string().min(3).required(),
+        name: Joi.string().min(3).max(100).required(),
         quantity: Joi.number().integer().min(1).max(200).required(),
         repeats: Joi.number().integer().min(1).max(12).required(),
         expired: Joi.boolean().truthy('yes').falsy('no').sensitive().required()
@@ -37,3 +37,4 @@ module.exports.validateMedScript = validateMedScript;
 //Iteration notes: 
 //Ensure the schema includes the FK for: [patientId, doctorId and pharmId]
 //Change "expired" to "date" and structure validation to ensure the date is not expired (validation can occur both at mongoose level and joi level - combines expired and date entry into one)
+//Add a "in stock function" - to pharm
