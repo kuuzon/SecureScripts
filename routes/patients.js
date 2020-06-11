@@ -24,14 +24,15 @@ router.post('/', async (req, res) => {
         name: req.body.name,
         birthdate: req.body.birthdate,
         address: {
-            streetNumber: req.body.streetNumber,
-            street: req.body.street,
-            city: req.body.city,
-            state: req.body.state,
-            postcode: req.body.postcode
+            streetNumber: req.body.address.streetNumber,
+            street: req.body.address.street,
+            city: req.body.address.city,
+            state: req.body.address.state,
+            postcode: req.body.address.postcode
         },
         email: req.body.email
     });
+    // console.log(patient.address);
 
     //Save new model to database
     patient = await patient.save();
@@ -64,15 +65,15 @@ router.put('/:id', async (req, res) => {
             name: req.body.name,
             birthdate: req.body.birthdate,
             address: {
-                streetNumber: req.body.streetNumber,
-                street: req.body.street,
-                city: req.body.city,
-                state: req.body.state,
-                postcode: req.body.postcode
+                streetNumber: req.body.address.streetNumber,
+                street: req.body.address.street,
+                city: req.body.address.city,
+                state: req.body.address.state,
+                postcode: req.body.address.postcode
             },
             email: req.body.email 
         }, {new: true});
-    
+
     if(!patient) {
         res.status(404).send(`The patient with an ID of ${req.params.id} does not exist.  Please ensure the patient ID has been entered correctly.`)
     } else {

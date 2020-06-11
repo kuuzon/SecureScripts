@@ -33,11 +33,11 @@ function validatePatient(patient){
         name: Joi.string().min(3).max(50).required(),
         birthdate: Joi.date().timestamp('javascript').less('now'),
         address: Joi.object({
-            streetNumber: Joi.number().integer().min(1).max(10).required(),
+            streetNumber: Joi.number().integer().min(1).max(9999).required(),
             street: Joi.string().min(3).max(50).required(),
             city: Joi.string().min(3).max(50),
             state: Joi.string().min(3).max(20).required(),
-            postcode: Joi.number().integer().min(4).max(4)
+            postcode: Joi.number().integer(4)
         }),
         email: Joi.string().email()
     });
