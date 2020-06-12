@@ -11,7 +11,6 @@ const Pharm = mongoose.model('Pharm', new mongoose.Schema({
         maxlength: 50
     },
     pharmAddress: {
-        name: String,
         streetNumber: Number,
         street: String,
         city: String,
@@ -21,6 +20,12 @@ const Pharm = mongoose.model('Pharm', new mongoose.Schema({
         },
         postcode: Number
     },
+    headPharmacist: {
+        type: String,
+        required: true,
+        minlength: 3,
+        maxlength: 50
+    },
     email: String
 }));
 
@@ -28,14 +33,14 @@ const Pharm = mongoose.model('Pharm', new mongoose.Schema({
 function validatePharm(pharm){
     const schema = Joi.object({
         name: Joi.string().min(3).max(50).required(),
-        clinicAddress: Joi.object({
-            name: Joi.string().min(3).max(100).required(),
+        pharmAddress: Joi.object({
             streetNumber: Joi.number().integer().min(1).max(9999).required(),
             street: Joi.string().min(3).max(50).required(),
             city: Joi.string().min(3).max(50),
             state: Joi.string().min(3).max(20).required(),
             postcode: Joi.number().integer(4)
         }),
+        headPharmacist: Joi.string().min(3).max(80).required(),
         email: Joi.string().email()
     });
     return schema.validate(pharm);

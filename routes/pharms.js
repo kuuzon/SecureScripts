@@ -22,13 +22,13 @@ router.post('/', async (req, res) => {
     let pharm = new Pharm({
         name: req.body.name,
         pharmAddress: {
-            name: req.body.pharmAddress.name,
             streetNumber: req.body.pharmAddress.streetNumber,
             street: req.body.pharmAddress.street,
             city: req.body.pharmAddress.city,
             state: req.body.pharmAddress.state,
             postcode: req.body.pharmAddress.postcode
         },
+        headPharmacist: req.body.headPharmacist,
         email: req.body.email 
     });
 
@@ -59,13 +59,13 @@ router.put('/:id', async (req, res) => {
             {
                 name: req.body.name,
                 pharmAddress: {
-                    name: req.body.pharmAddress.name,
                     streetNumber: req.body.pharmAddress.streetNumber,
                     street: req.body.pharmAddress.street,
                     city: req.body.pharmAddress.city,
                     state: req.body.pharmAddress.state,
                     postcode: req.body.pharmAddress.postcode
                 },
+                headPharmacist: req.body.headPharmacist,
                 email: req.body.email 
             }, {new:true});
 
