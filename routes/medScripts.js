@@ -1,5 +1,6 @@
 //Import schemas/validation
 const {MedScript, validateMedScript} = require('../models/medScript');
+const {Doctor} = require('../models/doctor');
 
 //Import express
 const express = require('express');
@@ -18,13 +19,21 @@ router.post('/', async (req, res) => {
     const {error} = validateMedScript(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+    //Check the Doctor ID is valid
+    const doctor = await Doctor.findById(req.body.doctorId);
+    if (!doctor) return res.status(400).send('Invalid Doctor.  Please ensure you have entered the correct Doctor ID');
+
     //Create new medScript model & record posted data to model variable
     let medScript = new MedScript({
         name: req.body.name,
         quantity: req.body.quantity,
         repeats: req.body.repeats,
-        date: req.body.date,
-        expired: req.body.expired
+        issueDate: req.body.issueDate,
+        expiryDate: req.body.expiryDate,
+        doctor: {
+            _id: doctor._id,
+            name: doctor.name
+        }
     });
     //Save new model to the database
     medScript = await medScript.save();
@@ -49,14 +58,22 @@ router.put('/:id', async (req, res) => {
     const {error} = validateMedScript(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
+    //Check the Doctor ID is valid
+    const doctor = await Doctor.findById(req.body.doctorId);
+    if (!doctor) return res.status(400).send('Invalid Doctor.  Please ensure you have entered the correct Doctor ID');
+
     //Find the Id & load in related data
     const medScript = await MedScript.findByIdAndUpdate(req.params.id,
-        //Data being updated
+        //Data being updated 
+        //(DATE should never be updatable as this would encourage manipulation of script issue date)
         {
             name: req.body.name,
             quantity: req.body.quantity,
             repeats: req.body.repeats,
-            expired: req.body.expired
+            doctor: {
+                _id: doctor._id,
+                name: doctor.name
+            }
         }, {new: true});
     
     if(!medScript) {
@@ -67,8 +84,9 @@ router.put('/:id', async (req, res) => {
             Name: ${medScript.name}, 
             Quantity: ${medScript.quantity},
             Repeats: ${medScript.repeats},
-            Date: ${medScript.date},
-            Expired: ${medScript.expired},`
+            Issue Date: ${medScript.issueDate},
+            Expiry Date: ${medScript.expiryDate},
+            Issuing Doctor: ${doctor.name}`
         );
     }
 });
@@ -88,4 +106,3 @@ router.delete('/:id', async (req, res) => {
 
 //Export module
 module.exports = router;
-

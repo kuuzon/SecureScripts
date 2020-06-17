@@ -24,7 +24,19 @@ const Patient = mongoose.model('Patient', new mongoose.Schema({
         },
         postcode: Number
     },
-    email: String
+    email: String,
+    medScript: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'MedScript'
+    },
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctor'
+    },
+    pharm: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Pharm'
+    }
 }));
 
 //Validation Schema: Patient
@@ -39,7 +51,10 @@ function validatePatient(patient){
             state: Joi.string().min(3).max(20).required(),
             postcode: Joi.number().integer(4)
         }),
-        email: Joi.string().email()
+        email: Joi.string().email(),
+        medScriptId: Joi.required(),
+        doctorId: Joi.required(),
+        pharmId: Joi.required()
     });
     return schema.validate(patient);
 };

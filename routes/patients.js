@@ -1,5 +1,8 @@
 //Import schemas/validation
 const {Patient, validatePatient} = require('../models/patient');
+const {MedScript} = require('../models/medScript');
+const {Doctor} = require('../models/doctor');
+const {Pharm} = require('../models/pharm');
 
 //Import express
 const express = require('express');
@@ -19,6 +22,18 @@ router.post('/', async (req, res) => {
     const {error} = validatePatient(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+    //Check the MedScript ID is valid
+    const medScript = await MedScript.findById(req.body.medScriptId);
+    if (!medScript) return res.status(400).send('Invalid Script.  Please ensure you have entered the correct Script ID');
+
+    //Check the Doctor ID is valid
+    const doctor = await Doctor.findById(req.body.doctorId);
+    if (!doctor) return res.status(400).send('Invalid Doctor.  Please ensure you have entered the correct Doctor ID');
+
+    //Check the Pharm ID is valid
+    const pharm = await Pharm.findById(req.body.pharmId);
+    if (!pharm) return res.status(400).send('Invalid requested Pharmacy.  Please ensure you have entered the correct Pharmacy ID');
+
     //Create new patient model + record post data to model variable
     let patient = new Patient({
         name: req.body.name,
@@ -30,7 +45,19 @@ router.post('/', async (req, res) => {
             state: req.body.address.state,
             postcode: req.body.address.postcode
         },
-        email: req.body.email
+        email: req.body.email,
+        medScript: {
+            _id: medScript._id,
+            name: medScript.name
+        },
+        doctor: {
+            _id: doctor._id,
+            name: doctor.name
+        },
+        pharm: {
+            _id: pharm._id,
+            name: pharm.name
+        }
     });
     // console.log(patient.address);
 
@@ -58,6 +85,18 @@ router.put('/:id', async (req, res) => {
     const {error} = validatePatient(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+    //Check the MedScript ID is valid
+    const medScript = await MedScript.findById(req.body.medScriptId);
+    if (!medScript) return res.status(400).send('Invalid Script.  Please ensure you have entered the correct Script ID');
+
+    //Check the Doctor ID is valid
+    const doctor = await Doctor.findById(req.body.doctorId);
+    if (!doctor) return res.status(400).send('Invalid Doctor.  Please ensure you have entered the correct Doctor ID');
+
+    //Check the Pharm ID is valid
+    const pharm = await Pharm.findById(req.body.pharmId);
+    if (!pharm) return res.status(400).send('Invalid requested Pharmacy.  Please ensure you have entered the correct Pharmacy ID');
+
     //Find ID & load in related data
     const patient = await Patient.findByIdAndUpdate(req.params.id, 
         //Updated data passed in
@@ -71,13 +110,25 @@ router.put('/:id', async (req, res) => {
                 state: req.body.address.state,
                 postcode: req.body.address.postcode
             },
-            email: req.body.email 
+            email: req.body.email,
+            medScript: {
+                _id: medScript._id,
+                name: medScript.name
+            },
+            doctor: {
+                _id: doctor._id,
+                name: doctor.name
+            },
+            pharm: {
+                _id: pharm._id,
+                name: pharm.name
+            }
         }, {new: true});
 
     if(!patient) {
         res.status(404).send(`The patient with an ID of ${req.params.id} does not exist.  Please ensure the patient ID has been entered correctly.`)
     } else {
-        res.send(`The personal details for ${patient.name} have been successfully updated!`)
+        res.send(`The details for ${patient.name} have been successfully updated!`)
     };
 });
 

@@ -21,7 +21,7 @@ const Doctor = mongoose.model('Doctor', new mongoose.Schema({
         },
         postcode: Number
     },
-    email: String
+    email: String,
 }));
 
 //Validation Schema: Patient

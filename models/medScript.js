@@ -1,6 +1,7 @@
 //Import packages
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
+const moment = require('moment');
 
 //Schema: MedScript
 const MedScript = mongoose.model('MedScript', new mongoose.Schema({
@@ -12,11 +13,18 @@ const MedScript = mongoose.model('MedScript', new mongoose.Schema({
     },
     quantity: Number,
     repeats: Number,
-    date: {
+    issueDate: {
         type: Date, 
-        default: Date.now
+        default: moment()
     },
-    expired: Boolean
+    expiryDate: {
+        type: Date,
+        default: moment().add(365, 'days')
+    },
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctor'
+    }
 }));
 
 //Validation Schema: MedScript
@@ -24,8 +32,10 @@ function validateMedScript(medScript){
     const schema = Joi.object({
         name: Joi.string().min(3).max(100).required(),
         quantity: Joi.number().integer().min(1).max(200).required(),
-        repeats: Joi.number().integer().min(1).max(12).required(),
-        expired: Joi.boolean().truthy('yes').falsy('no').sensitive().required()
+        repeats: Joi.number().integer().min(0).max(12).required(),
+        issueDate: Joi.date(),
+        expiryDate: Joi.date(),
+        doctorId: Joi.required()
     });
     return schema.validate(medScript);
 };
@@ -33,8 +43,3 @@ function validateMedScript(medScript){
 //Export schema/validation modules
 module.exports.MedScript = MedScript;
 module.exports.validateMedScript = validateMedScript;
-
-//Iteration notes: 
-//Ensure the schema includes the FK for: [patientId, doctorId and pharmId]
-//Change "expired" to "date" and structure validation to ensure the date is not expired (validation can occur both at mongoose level and joi level - combines expired and date entry into one)
-//Add a "in stock function" - to pharm

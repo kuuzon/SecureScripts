@@ -52,12 +52,18 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[2] Implement hybrid schema database between medScripts, doctors, patients & pharms 
 //[3] Write user model & routes including auth.js route
 //[4] Complete remainder route for error page
 //[5] Add debugging processes & envs to project
 //[6] Design basic React frontend to house base GET route
 
 //Addtional:
-//[1] Update medScript model: combine "date" and "expired" to a date validation schema (see medScript.js note)
+//[1] Add a expiry date validation on passing in script [IF TIME]
+// --- Date of issue/expiry is on the script.  Need a validation for when it is passed in at the pharm. 
+// --- Possibly new model (similar to rental one - this would solve data and stock issues) 
 //[2] Add a "in stock function" - to pharm (See rental in example assignment)
+// --- In stock: You would need a new model storing Medicine (stores all the meds that the scripts ref (need to change name structure there too - like ${medicine.name} Script)).  This model would be ref'd by the scripts and the pharm - pharm would then list the stocknumbers for these meds.
+
+
+//Queries for Dan:
+//[1] Any specific Joi validation for ObjectID? The previous objectId() no longer works
