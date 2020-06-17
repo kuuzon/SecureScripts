@@ -61,8 +61,12 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 //[1] Add a expiry date validation on passing in script [IF TIME]
 // --- Date of issue/expiry is on the script.  Need a validation for when it is passed in at the pharm. 
 // --- Possibly new model (similar to rental one - this would solve data and stock issues) 
+
 //[2] Add a "in stock function" - to pharm (See rental in example assignment)
 // --- In stock: You would need a new model storing Medicine (stores all the meds that the scripts ref (need to change name structure there too - like ${medicine.name} Script)).  This model would be ref'd by the scripts and the pharm - pharm would then list the stocknumbers for these meds.
+
+//[3] Add Documentation page (simple GET routes like ISS) for developers
+//GET routes would be the medicine route and select parts of the doctor / pharmacy routes [admin privs]
 
 
 //Queries for Dan:
