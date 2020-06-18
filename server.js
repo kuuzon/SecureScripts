@@ -17,6 +17,9 @@ const auth = require('./routes/auth');
 const express = require('express');
 const app = express();
 
+//Config Debug Test
+console.log('Config Test: ', config.message);
+
 //Web token environmental variable access to all routes
 if(!config.get('jwtPrivateKey')){
     console.error('FATAL ERROR: jwtPrivateKey is not defined.');
