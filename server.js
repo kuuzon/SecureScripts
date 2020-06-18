@@ -1,7 +1,8 @@
 //Import packages
 const Joi = require('@hapi/joi');
+// Joi.objectId = require('joi-objectid')(Joi); //**Need to npm package install (lookup)
 const mongoose = require('mongoose');
-// const config = require('config');
+const config = require('config');
 
 //Express Package
 const express = require('express');
@@ -15,6 +16,13 @@ const pharms = require('./routes/pharms');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 // const developers = require('./routes/developers');
+
+//Web token environmental variable access to all routes
+if(!config.get('jwtPrivateKey')){
+    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+    //Terminate Application
+    process.exit(1);
+};
 
 //Connetion to mongoose
 mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: true })
@@ -52,7 +60,7 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[3] Write user model & routes including auth.js route
+//[3] Write user model & routes including auth.js route (just need to test tokens)
 //[4] Complete remainder route for error page
 //[5] Add debugging processes & envs to project
 //[6] Design basic React frontend to house base GET route

@@ -1,3 +1,6 @@
+//Import middleware
+const auth = require('../middleware/auth');
+
 //Import schemas/validation
 const {MedScript, validateMedScript} = require('../models/medScript');
 const {Doctor} = require('../models/doctor');
@@ -8,13 +11,13 @@ const router = express.Router();
 
 //Routes
 //[1] READ (get) Route
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     const medScripts = await MedScript.find().sort('name');
     res.send(medScripts);
 });
 
 //[2] CREATE (post) Route
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     //Validation function
     const {error} = validateMedScript(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -53,7 +56,7 @@ router.get('/:id', async (req, res) => {
 });
 
 //[4] UPDATE (put) Route for Specific ID
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     //Validation function
     const {error} = validateMedScript(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -92,7 +95,7 @@ router.put('/:id', async (req, res) => {
 });
 
 //[4] DELETE (delete) Route
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     //Find the Id & load in related data
     const medScript = await MedScript.findByIdAndRemove(req.params.id);
 

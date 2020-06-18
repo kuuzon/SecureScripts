@@ -2,7 +2,6 @@
 const {User} = require('../models/user');
 
 //Import packages
-const mongoose = require('mongoose');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const Joi = require('@hapi/joi');
@@ -28,8 +27,11 @@ router.post('/', async(req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if(!validPassword) return res.status(400).send('Invalid email or password.  Please ensure you have entered your details correctly.');
 
-    //Success response to client (boolean for security)
-    res.send(true); 
+    //Generate JSON Web Token linked with User ID
+    const token = user.generateAuthToken();
+
+    //Success response to client (web token for security)
+    res.send(token); 
 });
 
 //Validation for Auth
