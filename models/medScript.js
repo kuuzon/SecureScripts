@@ -35,7 +35,7 @@ function validateMedScript(medScript){
         repeats: Joi.number().integer().min(0).max(12).required(),
         issueDate: Joi.date(),
         expiryDate: Joi.date(),
-        doctorId: Joi.required()
+        doctorId: Joi.objectId().required()
     });
     return schema.validate(medScript);
 };

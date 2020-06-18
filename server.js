@@ -1,12 +1,8 @@
 //Import packages
 const Joi = require('@hapi/joi');
-// Joi.objectId = require('joi-objectid')(Joi); //**Need to npm package install (lookup)
+Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const config = require('config');
-
-//Express Package
-const express = require('express');
-const app = express();
 
 //Import route modules
 const medScripts = require('./routes/medScripts');
@@ -16,6 +12,10 @@ const pharms = require('./routes/pharms');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 // const developers = require('./routes/developers');
+
+//Express Package
+const express = require('express');
+const app = express();
 
 //Web token environmental variable access to all routes
 if(!config.get('jwtPrivateKey')){
@@ -60,7 +60,7 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[3] Write user model & routes including auth.js route (just need to test tokens)
+//[3] Write user model & routes including auth.js route (just need to test tokens + fix env & config)
 //[4] Complete remainder route for error page
 //[5] Add debugging processes & envs to project
 //[6] Design basic React frontend to house base GET route
@@ -78,4 +78,4 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //Queries for Dan:
-//[1] Any specific Joi validation for ObjectID? The previous objectId() no longer works
+//[1] No matter what i do my query cannot detect config files

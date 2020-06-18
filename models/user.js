@@ -1,5 +1,8 @@
+//Import packages
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 //Schema: User
 const userSchema = new mongoose.Schema({

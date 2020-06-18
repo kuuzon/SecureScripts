@@ -52,9 +52,9 @@ function validatePatient(patient){
             postcode: Joi.number().integer(4)
         }),
         email: Joi.string().email(),
-        medScriptId: Joi.required(),
-        doctorId: Joi.required(),
-        pharmId: Joi.required()
+        medScriptId: Joi.objectId().required(),
+        doctorId: Joi.objectId().required(),
+        pharmId: Joi.objectId().required()
     });
     return schema.validate(patient);
 };

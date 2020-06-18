@@ -5,6 +5,7 @@ const {User} = require('../models/user');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const Joi = require('@hapi/joi');
+const config = require('config');
 
 //Import express 
 const express = require('express');
