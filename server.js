@@ -4,6 +4,10 @@ Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const config = require('config');
 
+//Import middleware modules
+const error = require('./middleware/error');
+require('express-async-errors'); 
+
 //Import route modules
 const medScripts = require('./routes/medScripts');
 const patients = require('./routes/patients');
@@ -57,7 +61,7 @@ app.use('/api/auth', auth);
 // app.use('/api/developers', developers);
 
 //[B] Error Route
-// app.use(error);
+app.use(error);
 
 //Server PORT
 const port = process.env.PORT || 5000
