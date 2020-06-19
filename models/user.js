@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const { boolean } = require('@hapi/joi');
 
 //Schema: User
 const userSchema = new mongoose.Schema({
@@ -24,13 +25,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 1024
-    }
+    },
+    isAdmin: Boolean
 });
 
 //Add custom method to the Schema object: the Generate Web Token function
 //REASON: When user is created, we also want to call the method function to generate a web token
 userSchema.methods.generateAuthToken = function(){
-    const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+    const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin}, config.get('jwtPrivateKey'));
     return token;
 };
 

@@ -1,5 +1,6 @@
 //Import middleware
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 //Import schemas/validation
 const {MedScript, validateMedScript} = require('../models/medScript');
@@ -95,7 +96,7 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 //[4] DELETE (delete) Route
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     //Find the Id & load in related data
     const medScript = await MedScript.findByIdAndRemove(req.params.id);
 

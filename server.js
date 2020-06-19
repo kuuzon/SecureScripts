@@ -69,8 +69,6 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[4] Complete remainder route for error page / debugging
-//[5] Add admin privledges
 //[6] Design basic React frontend to house base GET route
 
 //Addtional:
@@ -81,5 +79,11 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 //[2] Add a "in stock function" - to pharm (See rental in example assignment)
 // --- In stock: You would need a new model storing Medicine (stores all the meds that the scripts ref (need to change name structure there too - like ${medicine.name} Script)).  This model would be ref'd by the scripts and the pharm - pharm would then list the stocknumbers for these meds.
 
-//[3] Add Documentation page (simple GET routes like ISS) for developers
+//[3] Add different levels of admin privledges
+//Admin levels: Tier 1: Admin / Tier 2: Doctor & Pharm / Tier 3: Patient / Tier 4: Public & Non-User
+
+//[4] Add Documentation page (simple GET routes like ISS) for developers
 //GET routes would be the medicine route and select parts of the doctor / pharmacy routes [admin privs]
+
+//Query for Dan:
+//Nodemon unable to access ENVs stored in via terminal.  Should use dotenv or is there a workaround?

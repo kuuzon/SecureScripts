@@ -1,5 +1,6 @@
 //Import middleware
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 //Import schemas/validation
 const {Patient, validatePatient} = require('../models/patient');
@@ -136,7 +137,7 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 //[5] DELETE (delete) Route for Specific Patient ID
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     //Find ID & run if/else based on passed in ID
     const patient = await Patient.findOneAndRemove(req.params.id);
 
