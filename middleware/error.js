@@ -1,5 +1,6 @@
 //Import error package
 const winston = require('winston');
+require('winston-mongodb');
 
 //New Winston logger object (parameter is just setting the options)
 const logger = winston.createLogger({
