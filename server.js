@@ -18,7 +18,9 @@ const express = require('express');
 const app = express();
 
 //Config Debug Test
+//[ENV notes] to wipe ENV: unset jwtPrivateKey -- to see ENVs: printenv -- set new: export jwtPrivateKey=""
 console.log('Config Test: ', config.message);
+console.log('Config ENV Test: ', config.secretmessage);
 
 //Web token environmental variable access to all routes
 if(!config.get('jwtPrivateKey')){
@@ -63,9 +65,8 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
 //To do list:
-//[3] Write user model & routes including auth.js route (just need to test tokens + fix env & config)
-//[4] Complete remainder route for error page
-//[5] Add debugging processes & envs to project
+//[4] Complete remainder route for error page / debugging
+//[5] Add admin privledges
 //[6] Design basic React frontend to house base GET route
 
 //Addtional:
@@ -78,7 +79,3 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 //[3] Add Documentation page (simple GET routes like ISS) for developers
 //GET routes would be the medicine route and select parts of the doctor / pharmacy routes [admin privs]
-
-
-//Queries for Dan:
-//[1] No matter what i do my query cannot detect config files

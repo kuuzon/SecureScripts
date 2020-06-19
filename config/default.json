@@ -1,4 +1,5 @@
 {
     "jwtPrivateKey": "",
-    "message": "Success!"
+    "message": "Success!",
+    "secretmessage": "Error!"
 }

@@ -24,11 +24,7 @@ router.post('/', async(req, res) => {
     if(user) return res.status(400).send('Email already in use.  Please either login or create a unique account.');
 
     //Obtain user data 
-    user = new User(_.pick(req.body, [
-        'name',
-        'email',
-        'password'
-    ]));
+    user = new User(_.pick(req.body, ['name', 'email', 'password']));
 
     //Hash & Salt Password
     const salt = await bcrypt.genSalt(10);
@@ -48,7 +44,7 @@ router.post('/', async(req, res) => {
 //[2] Read (get) Route
 // Display own user profile details
 router.get('/me', auth, async(req, res) => {
-    const user = await User.findById(req.user_id).select('-password');
+    const user = await User.findById(req.user._id).select('-password');
     res.send(user);
 });
 
