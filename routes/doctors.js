@@ -21,14 +21,12 @@ router.post('/', async (req, res) => {
     //Create new doctor model + record post data
     let doctor = new Doctor({
         name: req.body.name,
-        clinicAddress: {
-            name: req.body.clinicAddress.name,
-            streetNumber: req.body.clinicAddress.streetNumber,
-            street: req.body.clinicAddress.street,
-            city: req.body.clinicAddress.city,
-            state: req.body.clinicAddress.state,
-            postcode: req.body.clinicAddress.postcode
-        },
+        clinicName: req.body.clinicName,
+        clinicStreetNumber: req.body.clinicStreetNumber,
+        clinicStreetName: req.body.clinicStreetName,
+        clinicCity: req.body.clinicCity,
+        clinicState: req.body.clinicState,
+        clinicPostcode: req.body.clinicPostcode,
         email: req.body.email
     });
 
@@ -57,14 +55,12 @@ router.put('/:id', async (req, res) => {
     const doctor = await Doctor.findByIdAndUpdate(req.params.id, 
         {
             name: req.body.name,
-            clinicAddress: {
-                name: req.body.clinicAddress.name,
-                streetNumber: req.body.clinicAddress.streetNumber,
-                street: req.body.clinicAddress.street,
-                city: req.body.clinicAddress.city,
-                state: req.body.clinicAddress.state,
-                postcode: req.body.clinicAddress.postcode
-            },
+            clinicName: req.body.clinicName,
+            clinicStreetNumber: req.body.clinicStreetNumber,
+            clinicStreetName: req.body.clinicStreetName,
+            clinicCity: req.body.clinicCity,
+            clinicState: req.body.clinicState,
+            clinicPostcode: req.body.clinicPostcode,
             email: req.body.email
         }, {new: true});
     

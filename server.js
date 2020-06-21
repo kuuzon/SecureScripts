@@ -79,9 +79,6 @@ const port = process.env.PORT || 5000
 app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 
-//To do list:
-//[6] Design basic React frontend to house base GET route
-
 //Addtional:
 //[1] Add a expiry date validation on passing in script [IF TIME]
 // --- Date of issue/expiry is on the script.  Need a validation for when it is passed in at the pharm. 
@@ -99,3 +96,4 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 //Query for Dan:
 //Nodemon unable to access ENVs stored in via terminal.  Should use dotenv or is there a workaround?
 //Error 404 and 500 - is the middleware we set up actually calling the errors or do we need additional middleware
+//DELETE routes: for some reason are deleting top of the array - possible issue with mongoose depcrecation???

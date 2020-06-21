@@ -10,15 +10,26 @@ const Pharm = mongoose.model('Pharm', new mongoose.Schema({
         minlength: 3,
         maxlength: 50
     },
-    pharmAddress: {
-        streetNumber: Number,
-        street: String,
-        city: String,
-        state: {
-            type: String,
-            uppercase: true
-        },
-        postcode: Number
+    pharmStreetNumber: {
+        type: Number,
+        required: true
+    },
+    pharmStreetName: {
+        type: String,
+        required: true
+    },
+    pharmCity: {
+        type: String,
+        required: true
+    },
+    pharmState: {
+        type: String,
+        uppercase: true,
+        required: true
+    },
+    pharmPostcode: {
+        type: Number,
+        required: true
     },
     headPharmacist: {
         type: String,
@@ -33,13 +44,11 @@ const Pharm = mongoose.model('Pharm', new mongoose.Schema({
 function validatePharm(pharm){
     const schema = Joi.object({
         name: Joi.string().min(3).max(50).required(),
-        pharmAddress: Joi.object({
-            streetNumber: Joi.number().integer().min(1).max(9999).required(),
-            street: Joi.string().min(3).max(50).required(),
-            city: Joi.string().min(3).max(50).required(),
-            state: Joi.string().min(3).max(20).required(),
-            postcode: Joi.number().integer(4)
-        }),
+        pharmStreetNumber: Joi.number().integer().min(1).max(9999).required(),
+        pharmStreetName: Joi.string().min(3).max(50).required(),
+        pharmCity: Joi.string().min(3).max(50).required(),
+        pharmState: Joi.string().min(3).max(20).required(),
+        pharmPostcode: Joi.number().integer(4),
         headPharmacist: Joi.string().min(3).max(80).required(),
         email: Joi.string().email().required()
     });

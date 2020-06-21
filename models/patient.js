@@ -14,15 +14,26 @@ const Patient = mongoose.model('Patient', new mongoose.Schema({
         type: Date,
         required: true
     },
-    address: {
-        streetNumber: Number,
-        street: String,
-        city: String,
-        state: {
-            type: String,
-            uppercase: true
-        },
-        postcode: Number
+    patientStreetNumber: {
+        type: Number,
+        required: true
+    },
+    patientStreetName: {
+        type: String,
+        required: true
+    },
+    patientCity: {
+        type: String,
+        required: true
+    },
+    patientState: {
+        type: String,
+        uppercase: true,
+        required: true
+    },
+    patientPostcode: {
+        type: Number,
+        required: true
     },
     email: String,
     medScript: {
@@ -44,13 +55,11 @@ function validatePatient(patient){
     const schema = Joi.object({
         name: Joi.string().min(3).max(50).required(),
         birthdate: Joi.date().timestamp('javascript').less('now'),
-        address: Joi.object({
-            streetNumber: Joi.number().integer().min(1).max(9999).required(),
-            street: Joi.string().min(3).max(50).required(),
-            city: Joi.string().min(3).max(50),
-            state: Joi.string().min(3).max(20).required(),
-            postcode: Joi.number().integer(4)
-        }),
+        patientStreetNumber: Joi.number().integer().min(1).max(9999).required(),
+        patientStreetName: Joi.string().min(3).max(50).required(),
+        patientCity: Joi.string().min(3).max(50),
+        patientState: Joi.string().min(3).max(20).required(),
+        patientPostcode: Joi.number().integer(4),
         email: Joi.string().email(),
         medScriptId: Joi.objectId().required(),
         doctorId: Joi.objectId().required(),

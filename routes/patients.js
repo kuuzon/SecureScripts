@@ -42,13 +42,11 @@ router.post('/', auth, async (req, res) => {
     let patient = new Patient({
         name: req.body.name,
         birthdate: req.body.birthdate,
-        address: {
-            streetNumber: req.body.address.streetNumber,
-            street: req.body.address.street,
-            city: req.body.address.city,
-            state: req.body.address.state,
-            postcode: req.body.address.postcode
-        },
+        patientStreetNumber: req.body.patientStreetNumber,
+        patientStreetName: req.body.patientStreetName,
+        patientCity: req.body.patientCity,
+        patientState: req.body.patientState,
+        patientPostcode: req.body.patientPostcode,
         email: req.body.email,
         medScript: {
             _id: medScript._id,
@@ -72,7 +70,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 //[3] READ (get) Route for Specific Patient ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     //Find and check ID passed into URL is valid
     const patient = await Patient.findById(req.params.id);
     if(!patient) {
@@ -107,13 +105,11 @@ router.put('/:id', auth, async (req, res) => {
         {
             name: req.body.name,
             birthdate: req.body.birthdate,
-            address: {
-                streetNumber: req.body.address.streetNumber,
-                street: req.body.address.street,
-                city: req.body.address.city,
-                state: req.body.address.state,
-                postcode: req.body.address.postcode
-            },
+            patientStreetNumber: req.body.patientStreetNumber,
+            patientStreetName: req.body.patientStreetName,
+            patientCity: req.body.patientCity,
+            patientState: req.body.patientState,
+            patientPostcode: req.body.patientPostcode,
             email: req.body.email,
             medScript: {
                 _id: medScript._id,

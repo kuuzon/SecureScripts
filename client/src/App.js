@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //Import custom components
 import Home from './components/views/Home';
 import Pharmacies from './components/views/pharmacies/Pharmacies';
-import PharmaciesForm from './components/views/pharmacies/PharmaciesForm';
+import PharmaciesNew from './components/views/pharmacies/PharmaciesNew';
 import NotFound from './components/views/NotFound';
 
 //Import layouts
@@ -26,7 +26,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/pharmacies' component={Pharmacies}></Route>
-            <Route exact path='/pharmaciesform' component={PharmaciesForm}></Route>
+              <Route exact path='/pharmaciesnew' component={PharmaciesNew}></Route>
             <Route component={NotFound}></Route>
           </Switch>
         </Router>

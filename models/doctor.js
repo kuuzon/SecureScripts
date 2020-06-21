@@ -9,17 +9,31 @@ const Doctor = mongoose.model('Doctor', new mongoose.Schema({
         required: true,
         minlength: 3,
         maxlength: 50
+    },  
+    clinicName: {
+        type: String,
+        required: true,
     },
-    clinicAddress: {
-        name: String,
-        streetNumber: Number,
-        street: String,
-        city: String,
-        state: {
-            type: String,
-            uppercase: true
-        },
-        postcode: Number
+    clinicStreetNumber: {
+        type: Number,
+        required: true
+    },
+    clinicStreetName: {
+        type: String,
+        required: true
+    },
+    clinicCity: {
+        type: String,
+        required: true
+    },
+    clinicState: {
+        type: String,
+        uppercase: true,
+        required: true
+    },
+    clinicPostcode: {
+        type: Number,
+        required: true
     },
     email: String,
 }));
@@ -28,14 +42,12 @@ const Doctor = mongoose.model('Doctor', new mongoose.Schema({
 function validateDoctor(doctor){
     const schema = Joi.object({
         name: Joi.string().min(3).max(50).required(),
-        clinicAddress: Joi.object({
-            name: Joi.string().min(3).max(100).required(),
-            streetNumber: Joi.number().integer().min(1).max(9999).required(),
-            street: Joi.string().min(3).max(50).required(),
-            city: Joi.string().min(3).max(50),
-            state: Joi.string().min(3).max(20).required(),
-            postcode: Joi.number().integer(4)
-        }),
+        clinicName: Joi.string().min(3).max(100).required(),
+        clinicStreetNumber: Joi.number().integer().min(1).max(9999).required(),
+        clinicStreetName: Joi.string().min(3).max(50).required(),
+        clinicCity: Joi.string().min(3).max(50),
+        clinicState: Joi.string().min(3).max(20).required(),
+        clinicPostcode: Joi.number().integer(4),
         email: Joi.string().email()
     });
     return schema.validate(doctor);

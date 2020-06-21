@@ -20,20 +20,16 @@ const P = styled.p`
 `;
 
 //Render
-const PharmaciesForm = () => {
+const PharmaciesNew = () => {
     //React States
     //[1] Set state for the form
     const [ formData, setFormData ] = useState({
         name: '',
-        streetNumber: {
-            value: Number
-        },
-        street: '',
-        city: '',
-        state: '',
-        postcode: {
-            value: Number
-        },
+        pharmStreetNumber: '',
+        pharmStreetName: '',
+        pharmCity: '',
+        pharmState: '',
+        pharmPostcode: '',
         headPharmacist: '',
         email: ''
     });
@@ -45,7 +41,7 @@ const PharmaciesForm = () => {
         message: ''
     })
 
-    const { name, streetNumber, street, city, state, postcode, headPharmacist, email } = formData;
+    const { name, pharmStreetNumber, pharmStreetName, pharmCity, pharmState, pharmPostcode, headPharmacist, email } = formData;
     const { variant, message } = alertData;
 
     //Create (post) functions
@@ -116,59 +112,59 @@ const PharmaciesForm = () => {
                     />
                 </Form.Group>
                 <Form.Row>
-                    <Form.Group as={Col} md="3" controlId="streetNumber">
+                    <Form.Group as={Col} md="3" controlId="pharmStreetNumber">
                         <Form.Label>Street Number</Form.Label>
                         <Form.Control
                             type="number"
                             placeholder="Enter pharmacy street number"
-                            name="streetNumber"
-                            value={streetNumber}
+                            name="pharmStreetNumber"
+                            value={pharmStreetNumber}
                             onChange={e => onChange(e)}
                             required
                         />
                     </Form.Group>
-                    <Form.Group as={Col} md="9" controlId="street">
+                    <Form.Group as={Col} md="9" controlId="pharmStreetName">
                         <Form.Label>Street Name</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter pharmacy street name"
-                            name="street"
-                            value={street}
+                            name="pharmStreetName"
+                            value={pharmStreetName}
                             onChange={e => onChange(e)}
                             required
                         />
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Form.Group as={Col} md="6" controlId="city">
+                    <Form.Group as={Col} md="6" controlId="pharmCity">
                         <Form.Label>City</Form.Label>
                         <Form.Control 
                             type="text" 
                             placeholder="Enter city name" 
-                            name="city"
-                            value={city}
+                            name="pharmCity"
+                            value={pharmCity}
                             onChange={e => onChange(e)}
                             required
                         />
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="state">
+                    <Form.Group as={Col} md="3" controlId="pharmState">
                         <Form.Label>State</Form.Label>
                         <Form.Control 
                             type="text" 
                             placeholder="Enter state" 
-                            name="state"
-                            value={state}
+                            name="pharmState"
+                            value={pharmState}
                             onChange={e => onChange(e)}
                             required
                         />
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="postcode">
+                    <Form.Group as={Col} md="3" controlId="pharmPostcode">
                         <Form.Label>Postcode</Form.Label>
                         <Form.Control 
                             type="number" 
                             placeholder="Enter postcode" 
-                            name="postcode"
-                            value={postcode}
+                            name="pharmPostcode"
+                            value={pharmPostcode}
                             onChange={e => onChange(e)}
                         />
                     </Form.Group>
@@ -201,6 +197,4 @@ const PharmaciesForm = () => {
     )
 }
 
-export default PharmaciesForm
-
-//ISSUE: Backend is expecting pharmacist details to be within the pharmAddress object.  Not sure how to transport the form data, to what the backend is expecting.  Either change the front end to match the backend, or rearrange the backend to match the form data.
+export default PharmaciesNew

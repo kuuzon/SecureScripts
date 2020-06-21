@@ -29,7 +29,7 @@ const P = styled.p`
 
 const Styles = styled.div`
     .container {
-        padding-bottom: 11rem;
+        padding-bottom: 1rem;
     }
 `;
 

@@ -26,13 +26,11 @@ router.post('/', async (req, res) => {
     //Create new pharm model + record post data
     let pharm = new Pharm({
         name: req.body.name,
-        pharmAddress: {
-            streetNumber: req.body.pharmAddress.streetNumber,
-            street: req.body.pharmAddress.street,
-            city: req.body.pharmAddress.city,
-            state: req.body.pharmAddress.state,
-            postcode: req.body.pharmAddress.postcode
-        },
+        pharmStreetNumber: req.body.pharmStreetNumber,
+        pharmStreetName: req.body.pharmStreetName,
+        pharmCity: req.body.pharmCity,
+        pharmState: req.body.pharmState,
+        pharmPostcode: req.body.pharmPostcode,
         headPharmacist: req.body.headPharmacist,
         email: req.body.email 
     });
@@ -63,15 +61,13 @@ router.put('/:id', async (req, res) => {
         const pharm = await Pharm.findByIdAndUpdate(req.params.id,
             {
                 name: req.body.name,
-                pharmAddress: {
-                    streetNumber: req.body.pharmAddress.streetNumber,
-                    street: req.body.pharmAddress.street,
-                    city: req.body.pharmAddress.city,
-                    state: req.body.pharmAddress.state,
-                    postcode: req.body.pharmAddress.postcode
-                },
+                pharmStreetNumber: req.body.pharmStreetNumber,
+                pharmStreetName: req.body.pharmStreetName,
+                pharmCity: req.body.pharmCity,
+                pharmState: req.body.pharmState,
+                pharmPostcode: req.body.pharmPostcode,
                 headPharmacist: req.body.headPharmacist,
-                email: req.body.email 
+                email: req.body.email
             }, {new:true});
 
         if(!pharm) {
