@@ -5,6 +5,8 @@ const {Pharm, validatePharm} = require('../models/pharm');
 const express = require('express');
 const router = express.Router();
 
+//Overview: The various routes to display, add, update and delete the current registered pharmacies in the SecureScripts database.  As all information is publically available, and is not referencing secure information, there are no admin auth required.
+
 //Routes
 //[1] READ (get) Route
 router.get('/', async (req, res) => {

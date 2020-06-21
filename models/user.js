@@ -6,6 +6,7 @@ const config = require('config');
 const { boolean } = require('@hapi/joi');
 
 //Schema: User
+//Overview: Class/object for the User schema.  Must detail the login requirements for the site, which provide various levels of administrative privledges depending on the type of user.
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -44,7 +45,8 @@ function validateUser(user){
     const schema = Joi.object({
         name: Joi.string().min(5).max(50).required(),
         email: Joi.string().min(5).max(255).email().required(),
-        password: Joi.string().min(5).max(255).required()
+        password: Joi.string().min(5).max(255).required(),
+        isAdmin: Joi.boolean()
     });
     return schema.validate(user)
 };

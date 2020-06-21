@@ -98,3 +98,4 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 
 //Query for Dan:
 //Nodemon unable to access ENVs stored in via terminal.  Should use dotenv or is there a workaround?
+//Error 404 and 500 - is the middleware we set up actually calling the errors or do we need additional middleware
