@@ -10,23 +10,31 @@ import styled from 'styled-components';
 //Custom styles for Nav
 const Styles = styled.div`
     .navbar {
-        background-color: #F9BE8B;
+        background-color: #1b1c32;
         font-weight: bold;
         height: 3rem;
         /* Scrolling opacity */
         backdrop-filter: saturate(180%) blur(20px);
-        opacity: 0.80;
+        opacity: 0.90;
     }
 
-    .navbar-brand, .navbar-nav .nav-link {
-        color: #D2691E;
+    .navbar-brand {
+        color: #FFFFFF;
         &:hover {        
-            color: #F96376;
+            color: #FFFFFF;
+        }
+    }
+
+    .navbar-nav .nav-link {
+        color: #EAEAEA;
+        &:hover {        
+            color: #FFFFFF;
         }
     }
 
     .d-inline-block {
-        color: #F96376;
+        color: #e96530;
+        margin-right: 0.5rem;
     }
 `
 

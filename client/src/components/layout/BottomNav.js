@@ -8,7 +8,7 @@ import styled from 'styled-components';
 //Custom styles for navs
 const Styles = styled.div`  
     .navbar {
-        background-color: #D6EAF0;
+        background-color: #1b1c32;
         height: 2rem;
         /* Scrolling opacity */
         backdrop-filter: saturate(180%) blur(20px);
@@ -16,15 +16,11 @@ const Styles = styled.div`
     }
 
     .navbar-brand {
-        color: #F9923B;
+        color: #EAEAEA;
         font-size: 0.8rem;
         &:hover {        
-            color: #F96376;
+            color: #FFFFFF;
         }
-    }
-
-    .d-inline-block {
-        color: #F96376;
     }
 `;
 
@@ -33,7 +29,7 @@ const BottomNav = () => {
         <Styles>
             <Navbar className="justify-content-center"  expand='lg' sticky="bottom">
                 <Navbar.Brand>
-                    CatKingdom: Copyright © Alex Bicknell 2020
+                    SecureScripts: Copyright © Alex Bicknell 2020
                 </Navbar.Brand>
             </Navbar>
         </Styles>

@@ -11,12 +11,14 @@ import './App.css';
 import Layout from './components/layout/Layout';
 import NavigationBar from './components/layout/NavigationBar';
 import BottomNav from './components/layout/BottomNav';
+import Jumbotron from './components/layout/Jumbotron';
 
 //Main routing & display
 function App() {
   return (
     <Fragment>
       <NavigationBar />
+      <Jumbotron />
       <Layout>
         <Router>
           <Switch>
