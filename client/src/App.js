@@ -3,8 +3,9 @@ import React, {Fragment} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Import custom components
-import Home from './components/Home';
-import NotFound from './components/NotFound';
+import Home from './components/views/Home';
+import Pharmacies from './components/views/Pharmacies';
+import NotFound from './components/views/NotFound';
 
 //Import layouts
 import './App.css';
@@ -23,6 +24,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path='/' component={Home}></Route>
+            <Route exact path='/pharmacies' component={Pharmacies}></Route>
             <Route component={NotFound}></Route>
           </Switch>
         </Router>

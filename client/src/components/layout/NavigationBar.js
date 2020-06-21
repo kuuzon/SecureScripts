@@ -75,13 +75,13 @@ const NavigationBar = () => {
                             <Nav.Link href='/clinics'>Clinics</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href='/pharm'>Pharmacies</Nav.Link>
+                            <Nav.Link href='/pharmacies'>Pharmacies</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link href='/scripts'>Scripts</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href='/scripts'>Patients</Nav.Link>
+                            <Nav.Link href='/patients'>Patients</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Button className="navbutton-login" variant="outline-success" size="sm">Log In</Button> 
