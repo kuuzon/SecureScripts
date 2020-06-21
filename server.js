@@ -3,6 +3,7 @@ const Joi = require('@hapi/joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const config = require('config');
+// const createErrors = require ('http-errors'); 
 
 //Import middleware modules
 const error = require('./middleware/error');
@@ -45,12 +46,7 @@ mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: t
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//[A] Home Route [READ]
-app.get('/', (req, res) => {
-    res.send('WELCOME TO SECURE SCRIPTS');
-});
-
-//[B] Imported Routes
+//[A] Imported Routes
 app.use('/api/medscripts', medScripts);
 app.use('/api/patients', patients);
 app.use('/api/doctors', doctors);
@@ -64,7 +60,19 @@ app.use('/api/auth', auth);
 //[B] Error Route
 app.use(error);
 
+// //Error Functions
+// app.use((req, res, next)=>{                              
+//     return next(createErrors(404, 'File not found'))     
+// });
 
+// app.use((req, res, next)=>{
+//     res.locals.message = err.message
+//     const status = err.status || 500
+//     res.locals.status = status
+//     res.locals.error = app.get('env') === "development" ? err : {}
+//     res.status(status)
+//     res.send(err)
+// });
 
 //Server PORT
 const port = process.env.PORT || 5000

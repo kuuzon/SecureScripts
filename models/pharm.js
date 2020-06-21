@@ -36,12 +36,12 @@ function validatePharm(pharm){
         pharmAddress: Joi.object({
             streetNumber: Joi.number().integer().min(1).max(9999).required(),
             street: Joi.string().min(3).max(50).required(),
-            city: Joi.string().min(3).max(50),
+            city: Joi.string().min(3).max(50).required(),
             state: Joi.string().min(3).max(20).required(),
             postcode: Joi.number().integer(4)
         }),
         headPharmacist: Joi.string().min(3).max(80).required(),
-        email: Joi.string().email()
+        email: Joi.string().email().required()
     });
     return schema.validate(pharm);
 };

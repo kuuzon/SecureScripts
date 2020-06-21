@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
 
 //[2] CREATE (post) Route
 router.post('/', async (req, res) => {
+    //Test of FrontEnd form
+    console.log(req.body)
+
     //Validation
     const {error} = validatePharm(req.body);
     if (error) return res.status(400).send(error.details[0].message);
