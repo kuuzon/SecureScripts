@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 //Custom styles
 const Styles = styled.div`
     .container {
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
     }
 `;
 

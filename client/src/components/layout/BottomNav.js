@@ -2,15 +2,15 @@
 import React from 'react';
 
 //Import packages
-import { Navbar } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 
 //Custom styles for navs
 const Styles = styled.div`  
-    .navbar {
+    .nav {
         background-color: #1b1c32;
         height: 2rem;
-        position: relative;
+        position: absolute;
         overflow: hidden;
         bottom: 0;
         width: 100%;
@@ -19,7 +19,7 @@ const Styles = styled.div`
         opacity: 0.80;
     };
 
-    .navbar-brand {
+    .nav-link {
         color: #DDDDDD;
         font-size: 0.8rem;
         &:hover {        
@@ -31,11 +31,11 @@ const Styles = styled.div`
 const BottomNav = () => {
     return (
         <Styles>
-            <Navbar className="justify-content-center"  expand='lg' sticky="bottom">
-                <Navbar.Brand>
+            <Nav className="justify-content-center"  expand='lg' sticky="bottom">
+                <Nav.Link>
                     SecureScripts: Copyright © Alex Bicknell 2020
-                </Navbar.Brand>
-            </Navbar>
+                </Nav.Link>
+            </Nav>
         </Styles>
     )
 }
