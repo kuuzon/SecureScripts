@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//Import React components
+import React, {Fragment} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+//Import custom components
+import Home from './components/Home';
+import NotFound from './components/NotFound';
+
+//Import layouts
+import './App.css';
+import Layout from './components/layout/Layout';
+import NavigationBar from './components/layout/NavigationBar';
+import BottomNav from './components/layout/BottomNav';
+
+//Main routing & display
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <NavigationBar />
+      <Layout>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Home}></Route>
+            <Route component={NotFound}></Route>
+          </Switch>
+        </Router>
+      </Layout>
+      <BottomNav />
+    </Fragment>
   );
 }
 

@@ -43,6 +43,7 @@ mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: t
 
 //Init express application
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //[A] Home Route [READ]
 app.get('/', (req, res) => {
@@ -62,6 +63,8 @@ app.use('/api/auth', auth);
 
 //[B] Error Route
 app.use(error);
+
+
 
 //Server PORT
 const port = process.env.PORT || 5000
