@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Import packages
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrescriptionBottle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -26,7 +26,7 @@ const Styles = styled.div`
     }
 
     .navbar-nav .nav-link {
-        color: #EAEAEA;
+        color: #DDDDDD;
         &:hover {        
             color: #FFFFFF;
         }
@@ -35,6 +35,20 @@ const Styles = styled.div`
     .d-inline-block {
         color: #e96530;
         margin-right: 0.5rem;
+    }
+
+    .navbutton-login {
+        margin-top: 0.2rem;
+        margin-left: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .navbutton-signup {
+        margin-top: 0.2rem;
+        margin-left: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 `
 
@@ -55,7 +69,25 @@ const NavigationBar = () => {
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='ml-auto'>
                         <Nav.Item>
-                            <Nav.Link href='/'>Home</Nav.Link>
+                            <Nav.Link href='/medication'>Medication</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href='/clinics'>Clinics</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href='/pharm'>Pharmacies</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href='/scripts'>Scripts</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href='/scripts'>Patients</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Button className="navbutton-login" variant="outline-success" size="sm">Log In</Button> 
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Button className="navbutton-signup" variant="success" size="sm">Sign Up</Button> 
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>

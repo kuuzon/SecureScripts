@@ -3,6 +3,7 @@ import React from 'react';
 
 //Import packages
 import styled from 'styled-components';
+import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,14 +27,22 @@ const P = styled.p`
     text-align: center;
 `;
 
+const Styles = styled.div`
+    .container {
+        padding-bottom: 1rem;
+    }
+`;
+
 //Render section:
 const NotFound = () => {
     return (
-        <div>
-            <H2><FontAwesomeIcon icon= {faExclamationTriangle}/> OOPS...</H2>
-            <H3>It seems that you made an error somewhere</H3>
-            <P>This is not the page you were looking for!</P>
-        </div>
+        <Styles>
+            <Container>
+                <H2><FontAwesomeIcon icon= {faExclamationTriangle}/>Page Not Found</H2>
+                <H3>It seems that you made an error somewhere</H3>
+                <P>This is not the page you were looking for!</P>
+            </Container>
+        </Styles>
     )
 }
 

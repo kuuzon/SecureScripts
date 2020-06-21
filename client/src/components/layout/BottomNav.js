@@ -10,18 +10,22 @@ const Styles = styled.div`
     .navbar {
         background-color: #1b1c32;
         height: 2rem;
+        position:absolute;
+        left:0;
+        bottom:0;
+        right:0;
         /* Scrolling opacity */
         backdrop-filter: saturate(180%) blur(20px);
         opacity: 0.80;
-    }
+    };
 
     .navbar-brand {
-        color: #EAEAEA;
+        color: #DDDDDD;
         font-size: 0.8rem;
         &:hover {        
             color: #FFFFFF;
         }
-    }
+    };
 `;
 
 const BottomNav = () => {
