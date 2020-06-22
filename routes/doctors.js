@@ -74,7 +74,7 @@ router.put('/:id', async (req, res) => {
 //[5] DELETE (delete) Route for Specific Doctor ID
 router.delete('/:id', async (req, res) => {
     //Find ID & run if/else statement based on ID in URL
-    const doctor = await Doctor.findOneAndRemove(req.params.id);
+    const doctor = await Doctor.findByIdAndRemove(req.params.id);
 
     if(!doctor) {
         res.status(404).send(`The doctor with an ID of ${req.params.id} does not exist.  Please ensure the doctor ID has been entered correctly.`)

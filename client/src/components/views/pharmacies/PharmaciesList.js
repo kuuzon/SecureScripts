@@ -29,7 +29,7 @@ const PharmaciesList = () => {
         <Styles>
             <Fragment className="card text-center">
                 <H2>{name}</H2>
-                <P>{pharmAddress.streetNumber}</P>
+                <P>{pharmStreetNumber}</P>
                 <P>{pharmAddress.street}</P>
                 <P>{pharmAddress.city}</P>
                 <P>{pharmAddress.state}</P>

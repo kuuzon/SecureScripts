@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const config = require('config');
-// const createErrors = require ('http-errors'); 
+const createErrors = require ('http-errors'); 
 
 //Import middleware modules
 const error = require('./middleware/error');
@@ -35,7 +35,7 @@ if(!config.get('jwtPrivateKey')){
 };
 
 //Connetion to mongoose
-mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:37017/securescripts', { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
     .then( () => { console.log('connected...'); } )
     .catch( err => console.error('connection failed', err) );
 
@@ -57,22 +57,22 @@ app.use('/api/auth', auth);
 //Additional Route [Documentation LIVE on site]
 // app.use('/api/developers', developers);
 
+//Error Functions
+app.use((req, res, next)=>{                              
+    return next(createErrors(404, 'File not found'))     
+});
+
+app.use((req, res, next)=>{
+    res.locals.message = err.message
+    const status = err.status || 500
+    res.locals.status = status
+    res.locals.error = app.get('env') === "development" ? err : {}
+    res.status(status)
+    res.send(err)
+});
+
 //[B] Error Route
 app.use(error);
-
-// //Error Functions
-// app.use((req, res, next)=>{                              
-//     return next(createErrors(404, 'File not found'))     
-// });
-
-// app.use((req, res, next)=>{
-//     res.locals.message = err.message
-//     const status = err.status || 500
-//     res.locals.status = status
-//     res.locals.error = app.get('env') === "development" ? err : {}
-//     res.status(status)
-//     res.send(err)
-// });
 
 //Server PORT
 const port = process.env.PORT || 5000
@@ -93,7 +93,5 @@ app.listen(5000, ()=> console.log(`Listening on port ${port}`));
 //[4] Add Documentation page (simple GET routes like ISS) for developers
 //GET routes would be the medicine route and select parts of the doctor / pharmacy routes [admin privs]
 
-//Query for Dan:
-//Nodemon unable to access ENVs stored in via terminal.  Should use dotenv or is there a workaround?
-//Error 404 and 500 - is the middleware we set up actually calling the errors or do we need additional middleware
-//DELETE routes: for some reason are deleting top of the array - possible issue with mongoose depcrecation???
+//Notes:
+//Nodemon: use dotenv to store ENVs
