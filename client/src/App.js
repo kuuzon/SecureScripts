@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //Import custom components
 import Home from './components/views/Home';
 import Pharmacies from './components/views/pharmacies/Pharmacies';
+import PharmaciesList from './components/views/pharmacies/PharmaciesList';
 import PharmaciesNew from './components/views/pharmacies/PharmaciesNew';
 import NotFound from './components/views/NotFound';
 
@@ -26,6 +27,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/pharmacies' component={Pharmacies}></Route>
+              <Route exact path='/pharmacieslist' component={PharmaciesList}></Route>
               <Route exact path='/pharmaciesnew' component={PharmaciesNew}></Route>
             <Route component={NotFound}></Route>
           </Switch>
